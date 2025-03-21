@@ -1,0 +1,72 @@
+"use strict";
+
+let currentValue = ''; // 現在の数式
+let lastOperator = null; // 最後に押された演算子
+let isOperatorPressed = false; // 演算子が押されたかどうかを判定するフラグ
+
+
+// ディスプレイの値を更新する関数
+function setDisplayValue(button) {
+    const display = document.querySelector('.display');
+    const value = button.textContent;
+
+    if (value !== 'C' && value !== '=') {
+        // 数字または演算子が入力された場合
+        const lastInput = currentValue.slice(-1);
+    
+        // 演算子が入力された場合
+        if (['+', '-', '×', '÷'].includes(value)) {
+            // 演算子が連続する場合、直前の演算子を置き換え
+            if (['+', '-', '×', '÷'].includes(lastInput)) {
+                currentValue = currentValue.slice(0, -1);
+            }
+
+            // 演算子を入力する
+            if (!isOperatorPressed) {
+                currentValue += value === '÷' ? '/' : value === '×' ? '*' : value;
+                isOperatorPressed = true; // 演算子が押されたことを記録
+            }
+        } else {
+            // 数字が入力された場合
+            currentValue += value;
+            isOperatorPressed = false; // 演算子が押された後に数字を入力したらフラグをリセット
+        }
+        
+        // 演算子を入力した場合は演算子を表示しない
+        if (isOperatorPressed) {
+            display.value = currentValue.slice(0, -1); // 演算子を一時的に表示しない
+        } else {
+            // 現在の数式の末尾の数値を表示
+            display.value = currentValue.match(/(\d+\.?\d*)$/)?.[0] || '';
+        }
+    }
+}
+
+// 計算結果を求める関数
+function executeCalculation() {
+    const display = document.querySelector('.display');
+    try {
+        const result = eval(currentValue);
+        display.value = result;
+        currentValue = result.toString();
+    } catch (error) {
+        display.value = 'Error';
+        currentValue = '';
+    }
+}
+
+// クリアする関数
+function clearDisplay() {
+    document.querySelector('.display').value = ''; 
+    currentValue = ''; 
+    lastOperator = null;
+    isOperatorPressed = false;
+}
+
+// ボタンにイベントリスナーを追加
+document.querySelectorAll('.calc-btn, .calc-operator').forEach(button => {
+    button.addEventListener('click', () => setDisplayValue(button));
+});
+
+document.querySelector('.calc-clear').addEventListener('click', clearDisplay);
+document.querySelector('.calc-equal').addEventListener('click', executeCalculation);

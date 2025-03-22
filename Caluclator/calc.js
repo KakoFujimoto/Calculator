@@ -4,34 +4,35 @@ let currentValue = ''; // 現在の数式
 let lastOperator = null; // 最後に押された演算子
 let isOperatorPressed = false; // 演算子が押されたかどうかを判定するフラグ
 
+// 演算子かどうかを判定する関数
+function isOperator(value) {
+    return ['+', '-', '×', '/'].includes(value);
+}
 
 // ディスプレイの値を更新する関数
 function setDisplayValue(button) {
     const display = document.querySelector('.display');
-    const value = button.textContent;
+    const value = button.getAttribute('data-value');
 
     if (value !== 'C' && value !== '=') {
         // 数字または演算子が入力された場合
         const lastInput = currentValue.slice(-1);
-    
-        // 演算子が入力された場合
-        if (['+', '-', '×', '÷'].includes(value)) {
-            // 演算子が連続する場合、直前の演算子を置き換え
-            if (['+', '-', '×', '÷'].includes(lastInput)) {
+
+         // 演算子が入力された場合
+        if (isOperator(value)) {
+            if (isOperator(lastInput)) {
+                // 演算子が連続する場合、直前の演算子を置き換え
                 currentValue = currentValue.slice(0, -1);
             }
-
             // 演算子を入力する
-            if (!isOperatorPressed) {
-                currentValue += value === '÷' ? '/' : value === '×' ? '*' : value;
-                isOperatorPressed = true; // 演算子が押されたことを記録
-            }
+            currentValue += value;
+            isOperatorPressed = true; // 演算子が押されたことを記録
         } else {
             // 数字が入力された場合
             currentValue += value;
             isOperatorPressed = false; // 演算子が押された後に数字を入力したらフラグをリセット
         }
-        
+
         // 演算子を入力した場合は演算子を表示しない
         if (isOperatorPressed) {
             display.value = currentValue.slice(0, -1); // 演算子を一時的に表示しない
@@ -57,8 +58,8 @@ function executeCalculation() {
 
 // クリアする関数
 function clearDisplay() {
-    document.querySelector('.display').value = ''; 
-    currentValue = ''; 
+    document.querySelector('.display').value = '';
+    currentValue = '';
     lastOperator = null;
     isOperatorPressed = false;
 }

@@ -6,7 +6,7 @@ let isOperatorPressed = false; // 演算子が押されたかどうかを判定�
 
 // 演算子かどうかを判定する関数
 function isOperator(value) {
-  return ["+", "-", "×", "/"].includes(value);
+  return ["+", "-", "*", "/"].includes(value);
 }
 
 // ディスプレイの値を更新する関数

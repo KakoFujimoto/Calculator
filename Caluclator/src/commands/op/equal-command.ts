@@ -24,8 +24,8 @@ export class EqualCommand implements Command {
             const currentExpression = this.operator.getCurrentValue();
             if(!currentExpression) return;
 
-            const result = eval(currentExpression);
-
+            const result = new Function("return" + currentExpression)();
+            
             this.operator.setValue(result.toString());
         } catch(error){
             this.operator.setValue("Error");

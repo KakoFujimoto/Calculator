@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="calculator">
+<table>
+<tr>
+<td colspan="4">
+            <input type="text" class="display" value="" disabled>
+            <input type="text" class="display" value="0" disabled>
+</td>
+</tr>
+<tr>
+<td><button data-value="7">7</button></td>
+<td><button data-value="8">8</button></td>
+<td><button data-value="9">9</button></td>
+<td><button data-value="/">÷</button></td>
+</tr>
+<tr>
+<td><button data-value="4">4</button></td>
+<td><button data-value="5">5</button></td>
+<td><button data-value="6">6</button></td>
+<td><button data-value="*">×</button></td>
+</tr>
+<tr>
+<td><button data-value="1">1</button></td>
+<td><button data-value="2">2</button></td>
+<td><button data-value="3">3</button></td>
+<td><button data-value="-">-</button></td>
+</tr>
+<tr>
+<td><button data-value="0">0</button></td>
+<td><button data-value="C">C</button></td>
+<td><button data-value="=">=</button></td>
+<td><button data-value="+">+</button></td>
+</tr>
+</table>
+</div>
+<script type="module" src="./dist/index.js"></script>
+</body>
+</html>

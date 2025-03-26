@@ -4,7 +4,7 @@ import { CommonOperator } from "./common-operator";
 /**
  * 等号(=)を実行するコマンド
  */
-export class EqualCOmmand implements Command {
+export class EqualCommand implements Command {
     private operator :CommonOperator;
 
     /**

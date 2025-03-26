@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES6",                   // 出力するJavaScriptのバージョン
-    "module": "commonjs",              // モジュールシステム
-    "outDir": "./dist",                // 出力先のディレクトリ
-    "rootDir": "./src",                // ソースコードのディレクトリ
-    "strict": true,                    // 厳密な型チェック
-    "esModuleInterop": true,          // ESモジュールとの互換性を有効化
-    "lib": ["es2016", "dom"]    
+    "target": "ES6",
+    "module": "ESNext",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "lib": ["ESNext", "DOM"],
+    "resolveJsonModule": true,   
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*"],             // コンパイル対象のファイル
-  "exclude": ["node_modules"]          // 除外するファイル
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

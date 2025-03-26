@@ -1,22 +1,23 @@
-import { Command } from "../base/command";
-import { Calculator } from "../../calculator/context";
+import { Command } from "../base/i-command";
+import { CommonOperator } from "./common-operator";
 
-export class EqualCommand implements Command {
-    private calculator: Calculator; // Calculatorクラスのインスタンスを保持
+export class EqualCOmmand implements Command {
+    private operator :CommonOperator;
 
-    constructor(calculator: Calculator) {
-        this.calculator = calculator;
+    constructor(operator:CommonOperator){
+        this.operator = operator;
     }
 
     execute(): void {
         try {
-            const currentExpression = this.calculator.getCurrentValue();
-            if (!currentExpression) return;
+            const currentExpression = this.operator.getCurrentValue();
+            if(!currentExpression) return;
 
             const result = eval(currentExpression);
-            this.calculator.setValue(result.toString());
-        } catch (error) {
-            this.calculator.setValue("Error");
+
+            this.operator.setValue(result.toString());
+        } catch(error){
+            this.operator.setValue("Error");
         }
     }
 }

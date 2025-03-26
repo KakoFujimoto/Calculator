@@ -1,4 +1,4 @@
-import { Command } from "../base/command";
+import { Command } from "../base/i-command";
 import { Calculator } from "../../calculator/context";
 
 export class ClearCommand implements Command {

@@ -24,7 +24,8 @@ export class EqualCommand implements Command {
             const currentExpression = this.operator.getCurrentValue();
             if(!currentExpression) return;
 
-            const result = new Function("return" + currentExpression)();
+            const formattedExpression = currentExpression.replace(/([+\-*/])/g, " $1 ");
+            const result = new Function("return " + formattedExpression)();
             
             this.operator.setValue(result.toString());
         } catch(error){

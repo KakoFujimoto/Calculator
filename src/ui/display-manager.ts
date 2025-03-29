@@ -15,4 +15,11 @@ export class DisplayManager {
   public updateDisplay(value: string): void {
     this.display.value = value;
   }
+
+  /**
+   * 表示をリセットする
+   */
+  public resrtDisplay(): void {
+    this.updateDisplay("0");
+  }
 }

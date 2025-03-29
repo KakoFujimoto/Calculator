@@ -2,8 +2,7 @@ import { CommonOperator } from "../commands/op/common-operator";
 import { DisplayManager } from "../ui/display-manager";
 
 /**
- * 電卓クラス
- * ユーザーが入力した値を保持し、計算結果を表示する
+ * 計算状態管理クラス
  */
 
 export class Calculator {
@@ -23,20 +22,20 @@ export class Calculator {
   }
 
   /**
-   * 現在の値を設定
+   * 現在の値を設定する
    */
   public setValue(value: string): void {
     this.currentValue = value;
-    this.displayManager.updateDisplay(this.currentValue);
+    this.displayManager.updateDisplay(value);
   }
 
   /**
-   * 計算結果をリセット
+   * 計算結果をリセットする
    */
   public clear(): void {
     this.currentValue = "0";
     this.isOperatorPressed = false;
-    this.displayManager.updateDisplay(this.currentValue);
+    this.displayManager.resrtDisplay();
   }
 
   /**

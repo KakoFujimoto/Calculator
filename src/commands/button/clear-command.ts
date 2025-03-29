@@ -1,23 +1,24 @@
 import { Command } from "../base/i-command";
-import { Calculator } from "../../calculator/context";
+import { DisplayManager } from "../../ui/display-manager";
+import { InputManager } from "../../ui/input-manager";
 
 /**
  * クリアボタンのコマンド
  */
 export class ClearCommand implements Command {
-    private calculator: Calculator;
+  private displayManager: DisplayManager;
+  private inputManager: InputManager;
 
-    /**
-     * @param {Calculator} calculator - 電卓インスタンス 
-     */
-    constructor(calculator: Calculator){
-        this.calculator = calculator;
-    }
+  constructor(displayManager: DisplayManager, inputManager: InputManager) {
+    this.inputManager = inputManager;
+    this.displayManager = displayManager;
+  }
 
-    /**
-     * 電卓のディスプレイをクリアする
-     */
-    execute(): void {
-        this.calculator.clear();
-    }
+  /**
+   * 電卓のディスプレイをクリアする
+   */
+  execute(): void {
+    this.inputManager.setCurrentValue("0");
+    this.displayManager.resetDisplay();
+  }
 }

@@ -19,7 +19,7 @@ export class DisplayManager {
   /**
    * 表示をリセットする
    */
-  public resrtDisplay(): void {
+  public resetDisplay(): void {
     this.updateDisplay("0");
   }
 }

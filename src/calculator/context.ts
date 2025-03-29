@@ -35,7 +35,7 @@ export class Calculator {
   public clear(): void {
     this.currentValue = "0";
     this.isOperatorPressed = false;
-    this.displayManager.resrtDisplay();
+    this.displayManager.resetDisplay();
   }
 
   /**

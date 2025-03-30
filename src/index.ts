@@ -1,7 +1,7 @@
-import * as Button from "./src/button-command";
-import { Context } from "./src/buildcommand-context";
-import { Calculator } from "./src/calculator";
-import { CommandBuilder } from "./src/command-builder";
+import * as Button from "./button-command";
+import { Context } from "./buildcommand-context";
+import { Calculator } from "./calculator";
+import { CommandBuilder } from "./command-builder";
 
 const context = new Context();
 

@@ -64,13 +64,16 @@ export class MultiplyCommand implements IOperationCommand {
 export class DivideCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
     try {
+      console.log("try");
       context.executeOperation();
       context.setOperation((lhs, rhs) => {
+        console.log("divide");
         if (rhs === 0) {
-          throw new Error("Error: DIvision by zero.");
+          throw new Error("Error: Division by zero.");
         }
         return lhs / rhs;
       });
+      console.log("end try");
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.log("エラー:", error.message);

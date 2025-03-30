@@ -1,6 +1,6 @@
 export class CommandExecutor {
   /** 次にする計算 */
-  private operation?: (lhs: number, rhs: number) => number;
+  private operation: ((lhs: number, rhs: number) => number) | null = null;
   /** 計算に渡す数値 */
   private stack: number[] = [];
 
@@ -11,7 +11,7 @@ export class CommandExecutor {
       // TODO: 2項の演算子しか設定できない -> 正負の反転などの単項の処理はこのままではできない
       const lhs = this.stack.shift()!;
       const rhs = this.stack.shift()!;
-      console.log('exec:', lhs, rhs);
+      console.log("exec:", lhs, rhs);
       this.stack.push(this.operation(lhs, rhs));
     }
   }
@@ -24,6 +24,12 @@ export class CommandExecutor {
   /** 計算用数値を追加 */
   addStack(value: number) {
     this.stack.push(value);
+  }
+
+  /** 計算処理をクリア */
+  clear() {
+    this.stack = [0];
+    this.operation = null;
   }
 
   result() {

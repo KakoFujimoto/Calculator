@@ -15,14 +15,12 @@ import { Calculator } from "./calculator";
 
 /** 計算処理のサンプル */
 function sample1() {
-  // 12 + 31 =
+  // 2 + 1 =
   const uicommands = [
-    new Button.NumberButtonCommand(1),
     new Button.NumberButtonCommand(2),
 
     new Button.PlusButtonCommand(),
 
-    new Button.NumberButtonCommand(3),
     new Button.NumberButtonCommand(1),
 
     new Button.EqualButtonCommand(),
@@ -131,12 +129,12 @@ function sample4() {
 }
 
 function sample5() {
-  // 30 / 6 =
+  // 30 / 3 =
   const uicommands = [
     new Button.NumberButtonCommand(3),
     new Button.NumberButtonCommand(0),
     new Button.DivideButtonCommand(),
-    new Button.NumberButtonCommand(6),
+    new Button.NumberButtonCommand(3),
     new Button.EqualButtonCommand(),
   ];
 
@@ -146,7 +144,24 @@ function sample5() {
   const calc = new Calculator();
   const result = calc.execute(opcommands);
 
-  console.log("30/6=" + result);
+  console.log("30/0=" + result);
+}
+
+function sample6() {
+  // 55 =
+  const uicommands = [
+    new Button.NumberButtonCommand(5),
+    new Button.NumberButtonCommand(5),
+    new Button.ClearButtonCommand(),
+  ];
+
+  const builder = new CommandBuilder();
+  const opcommands = builder.buildCommand(uicommands);
+
+  const calc = new Calculator();
+  const result = calc.execute(opcommands);
+
+  console.log("55→C入力:" + result);
 }
 
 console.log("-- sample1 --");
@@ -163,3 +178,6 @@ sample4();
 
 console.log("-- sample5 --");
 sample5();
+
+console.log("-- sample6 --");
+sample6();

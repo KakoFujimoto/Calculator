@@ -83,6 +83,18 @@ export class DivideCommand implements IOperationCommand {
     return "DivideCommand";
   }
 }
+
+/** クリアする */
+export class ClearCommand implements IOperationCommand {
+  execute(context: CommandExecutor): void {
+    context.clear();
+  }
+
+  name() {
+    return "ClearCommand";
+  }
+}
+
 /** 計算する */
 export class EqualCommand implements IOperationCommand {
   execute(context: CommandExecutor) {

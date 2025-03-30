@@ -50,12 +50,22 @@ export class MultiplyButtonCommand implements IButtonCommand {
   }
 }
 
+/** 割り算ボタンが押された場合 */
 export class DivideButtonCommand implements IButtonCommand {
   constructor() {}
 
   execute(context: Context): void {
     context.addNumberCommand();
     context.addCommand(new Command.DivideCommand());
+  }
+}
+
+/** Cボタンが押された場合 */
+export class ClearButtonCommand implements IButtonCommand {
+  constructor() {}
+
+  execute(context: Context): void {
+    context.addCommand(new Command.ClearCommand());
   }
 }
 

@@ -48,6 +48,18 @@ export class MinusCommand implements IOperationCommand {
   }
 }
 
+/** 掛け算 */
+export class MultiplyCommand implements IOperationCommand {
+  execute(context: CommandExecutor): void {
+    context.executeOperation();
+    context.setOperation((lhs, rhs) => lhs * rhs);
+  }
+
+  name() {
+    return "MultiplyCommand";
+  }
+}
+
 /** 計算する */
 export class EqualCommand implements IOperationCommand {
   execute(context: CommandExecutor) {

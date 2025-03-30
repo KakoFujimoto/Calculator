@@ -1,6 +1,6 @@
-import * as Button from './button-command';
-import { CommandBuilder } from './command-builder';
-import { Calculator } from './calculator';
+import * as Button from "./button-command";
+import { CommandBuilder } from "./command-builder";
+import { Calculator } from "./calculator";
 
 //
 // コマンドをinterfaceとそのimplementsとして実装することで、
@@ -15,7 +15,7 @@ import { Calculator } from './calculator';
 
 /** 計算処理のサンプル */
 function sample1() {
-  // 12 + 31 = 
+  // 12 + 31 =
   const uicommands = [
     new Button.NumberButtonCommand(1),
     new Button.NumberButtonCommand(2),
@@ -25,7 +25,7 @@ function sample1() {
     new Button.NumberButtonCommand(3),
     new Button.NumberButtonCommand(1),
 
-    new Button.EqualButtonCommand()
+    new Button.EqualButtonCommand(),
   ];
 
   // ボタン押されたコマンドから計算処理するコマンドへ変換
@@ -56,26 +56,26 @@ function sample2() {
   function display(logmessage: string) {
     const builder = new CommandBuilder();
     const display = builder.buildDisplayCommand(uicommands);
-    console.log('display:', logmessage, '→', display);
+    console.log("display:", logmessage, "→", display);
   }
 
   // 12
   uicommands.push(new Button.NumberButtonCommand(1));
   uicommands.push(new Button.NumberButtonCommand(2));
-  display('12');
+  display("12");
 
   // +
   uicommands.push(new Button.PlusButtonCommand());
-  display('12 +');
+  display("12 +");
 
   // 31
   uicommands.push(new Button.NumberButtonCommand(3));
   uicommands.push(new Button.NumberButtonCommand(1));
-  display('12 + 31');
+  display("12 + 31");
 
   // =
   uicommands.push(new Button.EqualButtonCommand());
-  display('12 + 31 =');
+  display("12 + 31 =");
 
   /*
   display: 12 → 12
@@ -93,8 +93,51 @@ function sample2() {
   */
 }
 
-console.log('-- sample1 --');
+function sample3() {
+  // 1 - 1 =
+  const uicommands = [
+    new Button.NumberButtonCommand(1),
+    new Button.MinusButtonCommand(),
+    new Button.NumberButtonCommand(1),
+    new Button.EqualButtonCommand(),
+  ];
+
+  const builder = new CommandBuilder();
+  const opcommands = builder.buildCommand(uicommands);
+
+  const calc = new Calculator();
+  const result = calc.execute(opcommands);
+
+  console.log("1-1=" + result);
+}
+
+function sample4() {
+  // 10 * 2 =
+  const uicommands = [
+    new Button.NumberButtonCommand(1),
+    new Button.NumberButtonCommand(0),
+    new Button.MultiplyButtonCommand(),
+    new Button.NumberButtonCommand(2),
+    new Button.EqualButtonCommand(),
+  ];
+
+  const builder = new CommandBuilder();
+  const opcommands = builder.buildCommand(uicommands);
+
+  const calc = new Calculator();
+  const result = calc.execute(opcommands);
+
+  console.log("10*2=" + result);
+}
+
+console.log("-- sample1 --");
 sample1();
 
-console.log('-- sample2 --');
+console.log("-- sample2 --");
 sample2();
+
+console.log("-- sample3 --");
+sample3();
+
+console.log("-- sample3 --");
+sample4();

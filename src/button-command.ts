@@ -40,6 +40,16 @@ export class MinusButtonCommand implements IButtonCommand {
   }
 }
 
+/** 掛け算ボタンが押された場合 */
+export class MultiplyButtonCommand implements IButtonCommand {
+  constructor() {}
+
+  execute(context: Context): void {
+    context.addNumberCommand();
+    context.addCommand(new Command.MultiplyCommand());
+  }
+}
+
 /** =が押された */
 export class EqualButtonCommand implements IButtonCommand {
   constructor() {}

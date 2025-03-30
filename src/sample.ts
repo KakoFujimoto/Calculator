@@ -130,6 +130,25 @@ function sample4() {
   console.log("10*2=" + result);
 }
 
+function sample5() {
+  // 30 / 6 =
+  const uicommands = [
+    new Button.NumberButtonCommand(3),
+    new Button.NumberButtonCommand(0),
+    new Button.DivideButtonCommand(),
+    new Button.NumberButtonCommand(6),
+    new Button.EqualButtonCommand(),
+  ];
+
+  const builder = new CommandBuilder();
+  const opcommands = builder.buildCommand(uicommands);
+
+  const calc = new Calculator();
+  const result = calc.execute(opcommands);
+
+  console.log("30/6=" + result);
+}
+
 console.log("-- sample1 --");
 sample1();
 
@@ -139,5 +158,8 @@ sample2();
 console.log("-- sample3 --");
 sample3();
 
-console.log("-- sample3 --");
+console.log("-- sample4 --");
 sample4();
+
+console.log("-- sample5 --");
+sample5();

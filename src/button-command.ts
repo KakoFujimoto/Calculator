@@ -1,12 +1,12 @@
 import { Context } from "./buildcommand-context";
 import * as Command from "./op-command";
 
-/** ボタン押した時コマンド */
+/** ボタン押した時用のコマンド */
 export interface IButtonCommand {
   execute(context: Context): void;
 }
 
-/** 数値ボタン押された場合 */
+/** 数値ボタンが押された場合 */
 export class NumberButtonCommand implements IButtonCommand {
   constructor(private value: number) {
     if (value < 0 || value > 9) {
@@ -19,7 +19,7 @@ export class NumberButtonCommand implements IButtonCommand {
   }
 }
 
-/** 足し算ボタン押された場合 */
+/** 足し算ボタンが押された場合 */
 export class PlusButtonCommand implements IButtonCommand {
   constructor() {}
 
@@ -50,7 +50,16 @@ export class MultiplyButtonCommand implements IButtonCommand {
   }
 }
 
-/** =が押された */
+export class DivideButtonCommand implements IButtonCommand {
+  constructor() {}
+
+  execute(context: Context): void {
+    context.addNumberCommand();
+    context.addCommand(new Command.DivideCommand());
+  }
+}
+
+/** =ボタンが押された場合 */
 export class EqualButtonCommand implements IButtonCommand {
   constructor() {}
 

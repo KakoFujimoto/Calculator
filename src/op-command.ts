@@ -24,7 +24,7 @@ export class NumberCommand implements IOperationCommand {
 
 /** 足し算 */
 export class PlusCommand implements IOperationCommand {
-  execute(context: CommandExecutor) {
+  execute(context: CommandExecutor): void {
     // 前回設定されている計算を行う
     context.executeOperation();
     // 計算処理を設定
@@ -57,6 +57,18 @@ export class MultiplyCommand implements IOperationCommand {
 
   name() {
     return "MultiplyCommand";
+  }
+}
+
+/** 割り算 */
+export class DivideCommand implements IOperationCommand {
+  execute(context: CommandExecutor): void {
+    context.executeOperation();
+    context.setOperation((lhs, rhs) => lhs / rhs);
+  }
+
+  name() {
+    return "DivideCommand";
   }
 }
 

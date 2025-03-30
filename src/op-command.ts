@@ -63,15 +63,26 @@ export class MultiplyCommand implements IOperationCommand {
 /** 割り算 */
 export class DivideCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
-    context.executeOperation();
-    context.setOperation((lhs, rhs) => lhs / rhs);
+    try {
+      context.executeOperation();
+      context.setOperation((lhs, rhs) => {
+        if (rhs === 0) {
+          throw new Error("Error: DIvision by zero.");
+        }
+        return lhs / rhs;
+      });
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log("エラー:", error.message);
+      } else {
+        console.log("Unknown Error");
+      }
+    }
   }
-
   name() {
     return "DivideCommand";
   }
 }
-
 /** 計算する */
 export class EqualCommand implements IOperationCommand {
   execute(context: CommandExecutor) {

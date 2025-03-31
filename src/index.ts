@@ -8,6 +8,9 @@ const context = new Context();
 document.querySelectorAll("button").forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.getAttribute("data-value")!;
+
+    console.log("クリックされたボタンの値:", value);
+
     let command: Button.IButtonCommand;
 
     switch (value) {
@@ -34,16 +37,18 @@ document.querySelectorAll("button").forEach((button) => {
         break;
     }
 
+    /** コマンドを追加 */
     command.execute(context);
 
-    /**  結果を取得して表示を更新 */
+    /** 結果を取得して表示を更新 */
     const display = document.querySelector(".display") as HTMLInputElement;
+
+    // 計算結果を表示するために、builderのbuildDisplayCommandを使う
     const uicommands: Button.IButtonCommand[] = [command];
     const builder = new CommandBuilder();
-    const opcommands = builder.buildCommand(uicommands);
-    const calc = new Calculator();
-    const result = calc.execute(opcommands);
+    const result = builder.buildDisplayCommand(uicommands);  // ここで結果を取得
 
+    // 計算結果をディスプレイに反映
     if (result !== undefined && display) {
       display.value = result.toString();
     } else {

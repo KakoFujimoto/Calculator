@@ -1,8 +1,11 @@
 import * as Button from "./button-command";
 import { Context } from "./buildcommand-context";
 import { Calculator } from "./calculator";
-import { CommandBuilder } from "./command-builder";
+import { IOperationCommand } from './op-command';  // これでIOperationCommandをインポート
 
+
+// Contextは計算状態を管理するので使わなくていいかもしれません。
+// 必要に応じて調整を行ってください。
 const context = new Context();
 
 document.querySelectorAll("button").forEach((button) => {
@@ -37,24 +40,17 @@ document.querySelectorAll("button").forEach((button) => {
         break;
     }
 
-    /** コマンドを追加 */
     command.execute(context);
 
-    /** 結果を取得して表示を更新 */
     const display = document.querySelector(".display") as HTMLInputElement;
 
-    // 計算結果を表示するために、builderのbuildDisplayCommandを使う
-    const uicommands: Button.IButtonCommand[] = [command];
-    const builder = new CommandBuilder();
-    const result = builder.buildDisplayCommand(uicommands);  // ここで結果を取得
+    const calc = new Calculator();
+    const result = calc.execute(context.getCommands() as IOperationCommand[]);
 
-    // 計算結果をディスプレイに反映
     if (result !== undefined && display) {
       display.value = result.toString();
-    } else {
-      if (display) {
-        display.value = "0";
-      }
+    } else if (display) {
+      display.value = "0";
     }
   });
 });

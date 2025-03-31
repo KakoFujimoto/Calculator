@@ -1,11 +1,8 @@
 import * as Button from "./button-command";
 import { Context } from "./buildcommand-context";
 import { Calculator } from "./calculator";
-import { IOperationCommand } from './op-command';  // これでIOperationCommandをインポート
+import { IOperationCommand } from "./op-command";
 
-
-// Contextは計算状態を管理するので使わなくていいかもしれません。
-// 必要に応じて調整を行ってください。
 const context = new Context();
 
 document.querySelectorAll("button").forEach((button) => {

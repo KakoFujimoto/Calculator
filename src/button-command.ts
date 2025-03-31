@@ -16,6 +16,7 @@ export class NumberButtonCommand implements IButtonCommand {
 
   execute(context: Context) {
     context.appendValue(this.value);
+    context.addNumberCommand();
   }
 }
 
@@ -26,7 +27,7 @@ export class PlusButtonCommand implements IButtonCommand {
   execute(context: Context) {
     context.addNumberCommand();
     context.addCommand(new Command.PlusCommand());
-    new NumberButtonCommand(0).execute(context); // 計算ボタン押されたら0にする？
+    // new NumberButtonCommand(0).execute(context);
   }
 }
 

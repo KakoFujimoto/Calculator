@@ -42,7 +42,7 @@ document.querySelectorAll("button").forEach((button) => {
     const display = document.querySelector(".display") as HTMLInputElement;
 
     const calc = new Calculator();
-    const result = calc.execute(context.getCommands() as IOperationCommand[]);
+    const result = calc.execute(context.getCommands());
 
     if (value === "C") {
       display.value = "0";

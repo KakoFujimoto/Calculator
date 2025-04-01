@@ -141,6 +141,8 @@ function sample5() {
   const builder = new CommandBuilder();
   const opcommands = builder.buildCommand(uicommands);
 
+  console.dir(opcommands);
+
   const calc = new Calculator();
   const result = calc.execute(opcommands);
 

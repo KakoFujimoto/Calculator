@@ -1,10 +1,12 @@
+import { Calculator } from "./calculator";
 import { 
   IOperationCommand, 
   NumberCommand, 
   PlusCommand, 
   MinusCommand, 
   MultiplyCommand, 
-  DivideCommand 
+  DivideCommand, 
+  EqualCommand
 } from "./op-command";
 
 /** コマンド生成時に利用する変数 */
@@ -23,11 +25,21 @@ export class Context {
     this.value += v;
   }
 
+  getLatestResult(){
+    const calc = new Calculator();
+    return calc.execute(this.commands as IOperationCommand[]) ?? 0;
+  }
+
   /** 数値を設定するコマンドを生成する */
   addNumberCommand() {
     if (this.value) {
       this.addCommand(new NumberCommand(parseInt(this.value, 10)));
       this.value = '';
+    } else if (this.commands.length > 0){
+      const lastCommand = this.commands[this.commands.length - 1];
+      if (lastCommand instanceof EqualCommand){
+        this.addCommand(new NumberCommand(this.getLatestResult()));
+      }
     }
   }
 

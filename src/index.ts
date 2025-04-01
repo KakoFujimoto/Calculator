@@ -44,7 +44,9 @@ document.querySelectorAll("button").forEach((button) => {
     const calc = new Calculator();
     const result = calc.execute(context.getCommands() as IOperationCommand[]);
 
-    if (result !== undefined && display) {
+    if (value === "C") {
+      display.value = "0";
+    } else if (result !== undefined && display) {
       display.value = result.toString();
     } else if (display) {
       display.value = "0";

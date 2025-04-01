@@ -28,7 +28,7 @@ export class CommandExecutor {
 
   /** 計算処理をクリア */
   clear() {
-    this.stack = [0];
+    this.stack = [];
     this.operation = null;
   }
 

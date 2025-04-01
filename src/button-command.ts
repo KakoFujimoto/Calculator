@@ -16,7 +16,6 @@ export class NumberButtonCommand implements IButtonCommand {
 
   execute(context: Context) {
     context.appendValue(this.value);
-    context.addNumberCommand();
   }
 }
 

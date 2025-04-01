@@ -30,7 +30,6 @@ export class CommandExecutor {
   clear() {
     this.stack = [];
     this.operation = null;
-    console.log("クリアボタン押したときのoperation : ",this.operation)
   }
 
   result() {

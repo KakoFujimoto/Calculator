@@ -32,6 +32,10 @@ export class CommandExecutor {
     this.operation = null;
   }
 
+  getLatestResult() {
+    return this.stack.at(-1);
+  }
+
   result() {
     return this.stack.pop();
   }

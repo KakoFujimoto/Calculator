@@ -5,7 +5,6 @@ import { IOperationCommand, NumberCommand, EqualCommand } from "./op-command";
 export class Context {
   private value: string = "";
   private commands: IOperationCommand[] = [];
-  private lastCommand: IOperationCommand | null = null;
 
   getCommands() {
     return [...this.commands];
@@ -34,6 +33,7 @@ export class Context {
       this.addCommand(new NumberCommand(parseInt(this.value, 10)));
       this.value = "";
     } else if (this.commands.length > 0) {
+      // これは悪くないが最終的になくなるかも？
       const lastCommand = this.commands[this.commands.length - 1];
       if (lastCommand instanceof EqualCommand) {
         this.addCommand(new NumberCommand(this.getLatestResult()));
@@ -46,12 +46,10 @@ export class Context {
     console.log("addcommand:", command.name());
 
     // 演算子が連続入力された場合は最終の演算子で置き換える
-    if (this.lastCommand?.isOperator() && command.isOperator()) {
+    if (this.commands.at(-1)?.isOperator() && command.isOperator()) {
       this.commands[this.commands.length - 1] = command;
     } else {
       this.commands.push(command);
     }
-
-    this.lastCommand = command;
   }
 }

@@ -1,7 +1,6 @@
 import * as Button from "./button-command";
 import { Context } from "./buildcommand-context";
 import { Calculator } from "./calculator";
-import { IOperationCommand } from "./op-command";
 
 const context = new Context();
 
@@ -46,7 +45,7 @@ document.querySelectorAll("button").forEach((button) => {
 
     if (value === "C") {
       display.value = "0";
-    } else if (!["+", "-", "*", "/", "="].includes(value)) {
+    } else if (command.isOperator() === false) {
       display.value = context.getValue();
     } else if (result !== undefined) {
       display.value = result.toString();

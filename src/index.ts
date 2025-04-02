@@ -46,9 +46,11 @@ document.querySelectorAll("button").forEach((button) => {
 
     if (value === "C") {
       display.value = "0";
-    } else if (result !== undefined && display) {
+    } else if (!["+", "-", "*", "/", "="].includes(value)) {
+      display.value = context.getValue();
+    } else if (result !== undefined) {
       display.value = result.toString();
-    } else if (display) {
+    } else {
       display.value = "0";
     }
   });

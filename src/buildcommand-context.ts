@@ -31,7 +31,7 @@ export class Context {
     } else if (this.commands.length > 0) {
       // これは悪くないが最終的になくなるかも？
       const lastCommand = this.commands[this.commands.length - 1];
-      if (lastCommand instanceof EqualCommand) {
+      if (lastCommand?.isEqualCommand()) {
         this.addCommand(
           new NumberCommand(this.executor.getLatestResult() ?? 0)
         );

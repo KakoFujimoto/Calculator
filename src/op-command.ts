@@ -4,6 +4,9 @@ import { CommandExecutor } from "./command-executor";
 export interface IOperationCommand {
   execute(context: CommandExecutor): void;
 
+  // 各コマンドは自身がどういうコマンド種類なのかを返すようにする
+  isOperator(): boolean;
+
   /** デバッグ用にわかりやすくするため */
   name(): string;
 }
@@ -17,6 +20,9 @@ export class NumberCommand implements IOperationCommand {
     context.addStack(this.value);
   }
 
+  isOperator(): boolean {
+    return false;
+  }
   name() {
     return "NumberCommand(" + this.value + ")";
   }
@@ -30,7 +36,9 @@ export class PlusCommand implements IOperationCommand {
     // 計算処理を設定
     context.setOperation((lhs, rhs) => lhs + rhs);
   }
-
+  isOperator(): boolean {
+    return true;
+  }
   name() {
     return "PlusCommand";
   }
@@ -42,7 +50,9 @@ export class MinusCommand implements IOperationCommand {
     context.executeOperation();
     context.setOperation((lhs, rhs) => lhs - rhs);
   }
-
+  isOperator(): boolean {
+    return true;
+  }
   name() {
     return "MinusCommand";
   }
@@ -54,7 +64,9 @@ export class MultiplyCommand implements IOperationCommand {
     context.executeOperation();
     context.setOperation((lhs, rhs) => lhs * rhs);
   }
-
+  isOperator(): boolean {
+    return true;
+  }
   name() {
     return "MultiplyCommand";
   }
@@ -82,6 +94,9 @@ export class DivideCommand implements IOperationCommand {
       }
     }
   }
+  isOperator(): boolean {
+    return true;
+  }
   name() {
     return "DivideCommand";
   }
@@ -92,7 +107,9 @@ export class ClearCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
     context.clear();
   }
-
+  isOperator(): boolean {
+    return false;
+  }
   name() {
     return "ClearCommand";
   }
@@ -103,7 +120,9 @@ export class EqualCommand implements IOperationCommand {
   execute(context: CommandExecutor) {
     context.executeOperation();
   }
-
+  isOperator(): boolean {
+    return true;
+  }
   name() {
     return "EqualCommand";
   }

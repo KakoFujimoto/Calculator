@@ -7,8 +7,6 @@ export interface IOperationCommand {
   // 各コマンドは自身がどういうコマンド種類なのかを返すようにする
   isOperator(): boolean;
 
-  isEqualCommand(): boolean;
-
   /** デバッグ用にわかりやすくするため */
   name(): string;
 }
@@ -23,9 +21,6 @@ export class NumberCommand implements IOperationCommand {
   }
 
   isOperator(): boolean {
-    return false;
-  }
-  isEqualCommand(): boolean {
     return false;
   }
   name() {
@@ -44,9 +39,6 @@ export class PlusCommand implements IOperationCommand {
   isOperator(): boolean {
     return true;
   }
-  isEqualCommand(): boolean {
-    return false;
-  }
   name() {
     return "PlusCommand";
   }
@@ -61,9 +53,6 @@ export class MinusCommand implements IOperationCommand {
   isOperator(): boolean {
     return true;
   }
-  isEqualCommand(): boolean {
-    return false;
-  }
   name() {
     return "MinusCommand";
   }
@@ -77,9 +66,6 @@ export class MultiplyCommand implements IOperationCommand {
   }
   isOperator(): boolean {
     return true;
-  }
-  isEqualCommand(): boolean {
-    return false;
   }
   name() {
     return "MultiplyCommand";
@@ -111,9 +97,6 @@ export class DivideCommand implements IOperationCommand {
   isOperator(): boolean {
     return true;
   }
-  isEqualCommand(): boolean {
-    return false;
-  }
   name() {
     return "DivideCommand";
   }
@@ -127,9 +110,6 @@ export class ClearCommand implements IOperationCommand {
   isOperator(): boolean {
     return false;
   }
-  isEqualCommand(): boolean {
-    return false;
-  }
   name() {
     return "ClearCommand";
   }
@@ -141,9 +121,6 @@ export class EqualCommand implements IOperationCommand {
     context.executeOperation();
   }
   isOperator(): boolean {
-    return true;
-  }
-  isEqualCommand(): boolean {
     return true;
   }
   name() {

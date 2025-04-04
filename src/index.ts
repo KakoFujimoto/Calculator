@@ -7,9 +7,6 @@ const context = new Context();
 document.querySelectorAll("button").forEach((button) => {
   button.addEventListener("click", () => {
     const value = button.getAttribute("data-value")!;
-
-    console.log("クリックされたボタンの値:", value);
-
     let command: Button.IButtonCommand;
 
     switch (value) {

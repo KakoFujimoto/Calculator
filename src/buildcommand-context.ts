@@ -28,15 +28,7 @@ export class Context {
     if (this.value) {
       this.addCommand(new NumberCommand(parseInt(this.value, 10)));
       this.value = "";
-    } else if (this.commands.length > 0) {
-      // これは悪くないが最終的になくなるかも？
-      const lastCommand = this.commands[this.commands.length - 1];
-      if (lastCommand instanceof EqualCommand) {
-        this.addCommand(
-          new NumberCommand(this.executor.getLatestResult() ?? 0)
-        );
-      }
-    }
+    } 
   }
 
   /** 処理コマンドを追加 */

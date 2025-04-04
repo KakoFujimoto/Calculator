@@ -1,15 +1,8 @@
-import { Context } from "./buildcommand-context";
-
 export class CommandExecutor {
   /** 次にする計算 */
   private operation: ((lhs: number, rhs: number) => number) | null = null;
   /** 計算に渡す数値 */
   private stack: number[] = [];
-  private context:Context;
-
-  constructor(context:Context){
-    this.context = context;
-  }
 
   /** 設定されている計算処理を行う */
   executeOperation() {
@@ -37,8 +30,6 @@ export class CommandExecutor {
   clear() {
     this.stack = [];
     this.operation = null;
-    this.context.clearValue();
-    console.log(this.context.getValue());
   }
 
   result() {

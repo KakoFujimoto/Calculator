@@ -1,11 +1,9 @@
 import { IOperationCommand, NumberCommand, EqualCommand } from "./op-command";
-import { CommandExecutor } from "./command-executor";
 
 /** コマンド生成時に利用する変数 */
 export class Context {
   private value: string = "";
   private commands: IOperationCommand[] = [];
-  private executor: CommandExecutor = new CommandExecutor();
 
   getCommands() {
     return [...this.commands];

@@ -75,24 +75,13 @@ export class MultiplyCommand implements IOperationCommand {
 /** 割り算 */
 export class DivideCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
-    try {
-      console.log("try");
-      context.executeOperation();
-      context.setOperation((lhs, rhs) => {
-        console.log("divide");
-        if (rhs === 0) {
-          throw new Error("Error: Division by zero.");
-        }
-        return lhs / rhs;
-      });
-      console.log("end try");
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.log("エラー:", error.message);
-      } else {
-        console.log("Unknown Error");
+    context.setOperation((lhs, rhs) => {
+      console.log("divide");
+      if (rhs === 0) {
+        throw new Error("Error: Division by zero.");
       }
-    }
+      return lhs / rhs;
+    });
   }
   isOperator(): boolean {
     return true;
@@ -118,7 +107,15 @@ export class ClearCommand implements IOperationCommand {
 /** 計算する */
 export class EqualCommand implements IOperationCommand {
   execute(context: CommandExecutor) {
-    context.executeOperation();
+    try {
+      context.executeOperation();
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log("エラー:", error.message);
+      } else {
+        console.log("Unknown Error");
+      }
+    }
   }
   isOperator(): boolean {
     return true;

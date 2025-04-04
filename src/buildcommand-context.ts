@@ -1,4 +1,4 @@
-import { IOperationCommand, NumberCommand, EqualCommand } from "./op-command";
+import { IOperationCommand, NumberCommand } from "./op-command";
 
 /** コマンド生成時に利用する変数 */
 export class Context {
@@ -40,4 +40,9 @@ export class Context {
       this.commands.push(command);
     }
   }
+
+  clearValue(){
+    this.value = "";
+  }
+
 }

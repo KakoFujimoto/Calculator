@@ -42,6 +42,7 @@ document.querySelectorAll("button").forEach((button) => {
 
     if (value === "C") {
       display.value = "0";
+      context.clearValue();
     } else if (command.isOperator() === false) {
       display.value = context.getValue();
     } else if (result !== undefined) {

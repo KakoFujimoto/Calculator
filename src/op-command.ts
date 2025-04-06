@@ -75,8 +75,8 @@ export class MultiplyCommand implements IOperationCommand {
 /** 割り算 */
 export class DivideCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
+    context.executeOperation();
     context.setOperation((lhs, rhs) => {
-      console.log("divide");
       if (rhs === 0) {
         throw new Error("Error: Division by zero.");
       }

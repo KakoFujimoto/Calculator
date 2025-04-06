@@ -21,10 +21,6 @@ export class Context {
     this.value += v;
   }
 
-  clearValue() {
-    this.value = "";
-  }
-
   /** 数値を設定するコマンドを生成する */
   addNumberCommand() {
     if (this.value) {

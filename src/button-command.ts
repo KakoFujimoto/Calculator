@@ -86,6 +86,7 @@ export class ClearButtonCommand implements IButtonCommand {
   constructor() {}
 
   execute(context: Context): void {
+    context.addNumberCommand();
     context.addCommand(new Command.ClearCommand());
   }
 

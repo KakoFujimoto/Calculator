@@ -32,7 +32,7 @@ export class NumberCommand implements IOperationCommand {
 export class PlusCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
     // 前回設定されている計算を行う
-    context.executeOperation();
+    // context.executeOperation();
     // 計算処理を設定
     context.setOperation((lhs, rhs) => lhs + rhs);
   }
@@ -47,7 +47,7 @@ export class PlusCommand implements IOperationCommand {
 /** 引き算 */
 export class MinusCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
-    context.executeOperation();
+    // context.executeOperation();
     context.setOperation((lhs, rhs) => lhs - rhs);
   }
   isOperator(): boolean {
@@ -61,7 +61,7 @@ export class MinusCommand implements IOperationCommand {
 /** 掛け算 */
 export class MultiplyCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
-    context.executeOperation();
+    // context.executeOperation();
     context.setOperation((lhs, rhs) => lhs * rhs);
   }
   isOperator(): boolean {
@@ -75,7 +75,7 @@ export class MultiplyCommand implements IOperationCommand {
 /** 割り算 */
 export class DivideCommand implements IOperationCommand {
   execute(context: CommandExecutor): void {
-    context.executeOperation();
+    // context.executeOperation();
     context.setOperation((lhs, rhs) => {
       if (rhs === 0) {
         throw new Error("Error: Division by zero.");
@@ -107,18 +107,10 @@ export class ClearCommand implements IOperationCommand {
 /** 計算する */
 export class EqualCommand implements IOperationCommand {
   execute(context: CommandExecutor) {
-    try {
-      context.executeOperation();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.log("エラー:", error.message);
-      } else {
-        console.log("Unknown Error");
-      }
-    }
+      context.executeOperation();  
   }
   isOperator(): boolean {
-    return true;
+    return false;
   }
   name() {
     return "EqualCommand";

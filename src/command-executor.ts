@@ -6,14 +6,20 @@ export class CommandExecutor {
 
   /** 設定されている計算処理を行う */
   executeOperation() {
-    if (this.operation) {
-      // 前から2つの数値を取り出す
-      // TODO: 2項の演算子しか設定できない -> 正負の反転などの単項の処理はこのままではできない
-      const lhs = this.stack.shift()!;
-      const rhs = this.stack.shift()!;
-      console.log("exec:", lhs, rhs);
-      this.stack.push(this.operation(lhs, rhs));
+    try {
+      if (this.operation) {
+        // 前から2つの数値を取り出す
+        // TODO: 2項の演算子しか設定できない -> 正負の反転などの単項の処理はこのままではできない
+        const lhs = this.stack.shift()!;
+        const rhs = this.stack.shift()!;
+        console.log("exec:", lhs, rhs);
+        this.stack.push(this.operation(lhs, rhs));
+      }
+    } catch (error) {
+      console.log("エラー");
+      console.dir(error);
     }
+    this.operation = null;
   }
 
   /** 計算処理を設定 */

@@ -8,6 +8,9 @@ export class Calculator {
     const executor = new CommandExecutor();
     for (let i = 0; i < commands.length; ++i) {
       const c = commands[i];
+      if(c.isOperator()){
+        executor.executeOperation();
+      }
       c.execute(executor);
     }
 

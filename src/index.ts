@@ -40,14 +40,6 @@ document.querySelectorAll("button").forEach((button) => {
     const calc = new Calculator();
     const result = calc.execute(context.getCommands());
 
-    if (value === "C") {
-      display.value = "0";
-    } else if (command.isOperator() === false) {
-      display.value = context.getValue();
-    } else if (result !== undefined) {
-      display.value = result.toString();
-    } else {
-      display.value = "0";
-    }
+    display.value = (result ?? 0).toString();
   });
 });

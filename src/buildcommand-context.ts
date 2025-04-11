@@ -1,4 +1,4 @@
-import { IOperationCommand, NumberCommand, EqualCommand } from "./op-command";
+import { IOperationCommand, NumberCommand } from "./op-command";
 
 /** コマンド生成時に利用する変数 */
 export class Context {
@@ -6,7 +6,14 @@ export class Context {
   private commands: IOperationCommand[] = [];
 
   getCommands() {
-    return [...this.commands];
+    const commands = [...this.commands];
+
+    // 余った数値を数値コマンドへ置き換える
+    if (this.value) {
+      commands.push(new NumberCommand(parseInt(this.value, 10)));
+    }
+
+    return commands;
   }
 
   getValue() {
